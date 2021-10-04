@@ -1,0 +1,18 @@
+<h1>Flickr API</h1>
+<% if params[:user_id].nil? %>
+  <%= render 'search_form' %>
+<% else %>
+  <%= render 'search_form' %>
+  <% if params[:user_id].empty? %>
+    <div><b>Empty search</b></div>
+    <div>Here's Chichi for you:</div>
+  <% elsif @user.nil? %>
+    <div><b>Invalid ID</b></div>
+    <div>Here's Chichi for you:</div>
+  <% else %>
+    <div>Here are the photos of <b><%= @user.username %></b>:</div>
+  <% end %>
+  <% @photos.each do |photo| %>
+    <img src="<%= Flickr.url_n(photo) %>"/>
+  <% end %>
+<% end %>
